@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Detector</title>
+    <link rel="stylesheet" href="{% static 'weather.css' %}" />
+  </head>
+  <body align="center">
+    <div class="heading">
+      <u> <b>Weather Detector </b> </u>
+    </div>
+
+    <form method="POST" action="{% url 'index' %}">
+      {% csrf_token %}
+      <div class="search">
+        <input
+          id="intext"
+          type="text"
+          name="city"
+          placeholder="Enter the city name"
+        />
+        <input type="submit" />
+      </div>
+    </form>
+    <div class="info">
+      <h1>
+        Name:
+        <div class="answer">{{ city }}</div>
+      </h1>
+      <h1>
+        Country Code:
+        <div class="answer">{{ data.country_code }}</div>
+      </h1>
+      <h1>
+        Coordinates:
+        <div class="answer">{{ data.coordinate }}</div>
+      </h1>
+
+      <h1>
+        Temperature:
+        <div class="answer">{{ data.temp }}</div>
+      </h1>
+      <h1>
+        Pressure:
+        <div class="answer">{{ data.pressure }}</div>
+      </h1>
+      <h1>
+        Humidity:
+        <div class="answer">{{ data.humidity }}</div>
+      </h1>
+    </div>
+  </body>
+</html>
